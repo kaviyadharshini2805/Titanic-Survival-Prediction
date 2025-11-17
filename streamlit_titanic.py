@@ -9,20 +9,14 @@ model = joblib.load("titanic_model.joblib")
 
 st.subheader("Enter Passenger Details")
 
-# Passenger class (integer)
-p_class = st.selectbox("Passenger Class (p_class)", [1, 2, 3])
+p_class = st.selectbox("Passenger Class", [1, 2, 3])
 
-# Sex mapping
 sex = st.selectbox("Sex", ["male", "female"])
 sex = 0 if sex == "male" else 1
 
-# Age (INTEGER ONLY)
-age = st.number_input("Age", min_value=0, max_value=100, value=25, step=1)
+age = st.number_input("Age", 0, 100, 25, step=1)
+fare = st.number_input("Fare", 0, 600, 32, step=1)
 
-# Fare (INTEGER ONLY)
-fare = st.number_input("Fare", min_value=0, max_value=600, value=32, step=1)
-
-# Prepare features
 features = np.array([[p_class, sex, age, fare]])
 
 if st.button("Predict"):
